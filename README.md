@@ -66,4 +66,61 @@ Given the requirements (stability, network performance, cross-platform nature), 
 
 1. **If you need a balance of speed, modern feel, and reliable performance:** Use **Go (Backend) + Webview/Tauri (Frontend).**
 2. **If stability is literally the only consideration (and budget time):** Use **Rust (Backend)**.
+
+# Hrothgar-Mead-Hall
+
+A GUI based application for clustering workstations/servers over remote and local connections for AI workloads
+
+## Project Structure
+
+This project consists of multiple components that work together:
+
+- **Web GUI**: A Flask backend with React frontend for managing clustering systems
+- **Desktop GUI**: A Python desktop application using Tkinter for managing clustering systems
+- **Shared Components**: Common modules used by both GUIs including data models and API client
+
+## Building and Running the Application
+
+### Prerequisites
+
+- Python 3.7+
+- Node.js and npm (for web UI)
+- pip (Python package manager)
+
+### Setup Instructions
+
+1. Clone the repository
+2. Install dependencies for both GUIs:
+   - For the web GUI: `cd mead-hall/web && npm install` (if there are frontend dependencies)
+   - For the desktop GUI: `pip install tkinter` (usually included with Python)
+3. Install Python dependencies:
+   ```bash
+   pip install flask flask-cors requests
+   ```
+
+### Running the Application
+
+#### Web GUI
+
+1. Start the Flask backend:
+   ```bash
+   cd mead-hall/web
+   python app.py
+   ```
+2. The web interface will be available at `http://localhost:5000`
+
+#### Desktop GUI
+
+1. Run the desktop application:
+   ```bash
+   cd mead-hall/desktop
+   python main.py
+   ```
+
+### Communication between Components
+
+The desktop and web GUIs communicate with the Flask backend through REST API calls using the shared API client (`mead-hall/shared/api_client.py`). This enables both interfaces to access and modify the same data.
+
+---
+
 3. **Avoid using Python for the core backend logic if high concurrency and extreme uptime are required**, unless you strictly limit its scope to simple API endpoints, and offload the heavy networking/state management to a faster language like Go or Rust.
